@@ -1,0 +1,13 @@
+{
+  "extras": [
+    "lazyvim.plugins.extras.lang.clangd",
+    "lazyvim.plugins.extras.lang.cmake",
+    "lazyvim.plugins.extras.lang.tailwind",
+    "lazyvim.plugins.extras.lang.terraform",
+    "lazyvim.plugins.extras.lang.yaml"
+  ],
+  "news": {
+    "NEWS.md": "2123"
+  },
+  "version": 2
+}
