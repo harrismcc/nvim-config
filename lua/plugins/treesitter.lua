@@ -53,6 +53,7 @@ return {
       "yaml",
       "astro",
       "svelte",
+      "gleam",
     },
     incremental_selection = {
       enable = true,
