@@ -15,6 +15,10 @@ return {
     -- used for completion, annotations and signatures of Neovim apis
     { 'folke/neodev.nvim', opts = {} },
   },
+  opts = {
+    -- Enable inlay hints
+    inlay_hints = { enabled = true },
+  },
   config = function()
     -- Brief Aside: **What is LSP?**
     --
@@ -119,6 +123,17 @@ return {
       end,
     })
 
+    -- inlay hints
+    if vim.lsp.inlay_hint then
+      -- default to true
+      vim.lsp.inlay_hint.enable(true)
+
+      -- setup keybind
+      vim.keymap.set('n', '<leader>uh', function()
+        vim.lsp.inlay_hint.enable(nil)
+      end, { desc = 'Toggle Inlay Hints' })
+    end
+
     -- LSP servers and clients are able to communicate to each other what features they support.
     --  By default, Neovim doesn't support everything that is in the LSP Specification.
     --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -136,7 +151,10 @@ return {
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
-      -- clangd = {},
+      clangd = {
+        filetypes = { 'c', 'cpp', 'objc', 'ojbcpp', 'cuda' },
+      },
+      astro = {},
       -- gopls = {},
       -- pyright = {},
       -- rust_analyzer = {},
@@ -159,8 +177,21 @@ return {
             completion = {
               callSnippet = 'Replace',
             },
-            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
+            hint = { enable = true },
+          },
+        },
+      },
+      eslint = {
+        settings = {
+          codeActionOnSave = {
+            enable = true,
+          },
+        },
+      },
+      biome = {
+        settings = {
+          codeActionOnSave = {
+            enable = true,
           },
         },
       },
@@ -182,11 +213,13 @@ return {
       'stylua', -- Used to format lua code
       'prettierd',
       'eslint_d',
+      'biome',
       'cpplint',
 
       --LSPs
       'arduino-language-server',
       'clangd',
+      'nil',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
