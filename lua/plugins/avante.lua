@@ -67,6 +67,10 @@ return {
                 results = providers,
               },
               sorter = require('telescope.config').values.generic_sorter {},
+              layout_config = {
+                width = 0.4, -- 40% of the screen width
+                height = 0.4, -- 40% of the screen height
+              },
               attach_mappings = function(_, map)
                 map('i', '<CR>', function(prompt_bufnr)
                   local selection = require('telescope.actions.state').get_selected_entry()
