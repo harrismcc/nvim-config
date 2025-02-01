@@ -3,7 +3,6 @@ return {
   'stevearc/conform.nvim',
   opts = {
     notify_on_error = true,
-    log_level = vim.log.levels.DEBUG,
     format_on_save = {
       timeout_ms = 5000,
       lsp_fallback = true,
@@ -27,6 +26,7 @@ return {
       ['javascriptreact'] = { { 'biome', 'prettierd', 'prettier' } },
       ['typescript'] = { { 'biome', 'prettierd', 'prettier' } },
       ['typescriptreact'] = { { 'biome', 'prettierd', 'prettier' } },
+      ['astro'] = { { 'biome', 'prettierd', 'prettier' } },
       ['vue'] = { { 'prettierd', 'prettier' } },
       ['css'] = { { 'biome', 'prettierd', 'prettier' } },
       ['scss'] = { { 'biome', 'prettierd', 'prettier' } },
@@ -39,7 +39,6 @@ return {
       ['mdx'] = { { 'prettierd', 'prettier' } },
       ['graphql'] = { { 'prettierd', 'prettier' } },
       ['handlebars'] = { { 'prettierd', 'prettier' } },
-      ['astro'] = { { 'prettierd', 'prettier' } },
     },
   },
 }

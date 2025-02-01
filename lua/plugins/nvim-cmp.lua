@@ -84,8 +84,9 @@ return { -- Autocompletion
       },
       sources = {
         { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'path' },
+        -- Trying out commenting this out to make it faster
+        -- { name = 'luasnip' },
+        -- { name = 'path' },
       },
     }
   end,

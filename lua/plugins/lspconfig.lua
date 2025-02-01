@@ -181,20 +181,9 @@ return {
           },
         },
       },
-      eslint = {
-        settings = {
-          codeActionOnSave = {
-            enable = true,
-          },
-        },
-      },
-      biome = {
-        settings = {
-          codeActionOnSave = {
-            enable = true,
-          },
-        },
-      },
+      -- ts_ls = {
+      --   enable = true,
+      -- },
     }
 
     -- Ensure the servers and tools above are installed

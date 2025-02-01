@@ -6,10 +6,39 @@ return {
   opts = {
     -- add any opts here
     provider = 'copilot',
+
+    vendors = {
+      r1 = {
+        __inherited_from = 'openai',
+        api_key_name = 'OPENWEBUI_API_KEY',
+        endpoint = 'https://chat.socksmy.rocks/api',
+        model = 'deepseek-r1',
+      },
+      ['o1'] = {
+        __inherited_from = 'openai',
+        api_key_name = 'OPENWEBUI_API_KEY',
+        endpoint = 'https://chat.socksmy.rocks/api',
+        model = 'litellm.o1',
+      },
+      ['o1-mini'] = {
+        __inherited_from = 'openai',
+        api_key_name = 'OPENWEBUI_API_KEY',
+        endpoint = 'https://chat.socksmy.rocks/api',
+        model = 'litellm.o1-mini',
+      },
+      ['4o-mini'] = {
+        __inherited_from = 'openai',
+        api_key_name = 'OPENWEBUI_API_KEY',
+        endpoint = 'https://chat.socksmy.rocks/api',
+        model = 'litellm.gpt-4o-mini',
+      },
+    },
+
     mappings = {
       ask = '<leader>cc', -- ask
       edit = '<leader>ce', -- edit
       refresh = '<leader>ur', -- refresh
+      switch_provider = '<leader>cp', -- new provider switch mapping
       sidebar = {
         apply_all = 'Z',
         apply_cursor = 'a',
@@ -25,8 +54,32 @@ return {
   keys = function(_, keys)
     ---@type avante.Config
     local opts = require('lazy.core.plugin').values(require('lazy.core.config').spec.plugins['avante.nvim'], 'opts', false)
-
     local mappings = {
+      {
+        opts.mappings.switch_provider,
+        function()
+          local providers = vim.tbl_keys(opts.vendors)
+          table.insert(providers, 1, opts.provider)
+          require('telescope.pickers')
+            .new({
+              prompt_title = 'Avante Providers',
+              finder = require('telescope.finders').new_table {
+                results = providers,
+              },
+              sorter = require('telescope.config').values.generic_sorter {},
+              attach_mappings = function(_, map)
+                map('i', '<CR>', function(prompt_bufnr)
+                  local selection = require('telescope.actions.state').get_selected_entry()
+                  require('telescope.actions').close(prompt_bufnr)
+                  vim.cmd.AvanteSwitchProvider(selection.value)
+                end)
+                return true
+              end,
+            })
+            :find()
+        end,
+        desc = 'avante: switch provider',
+      },
       {
         opts.mappings.ask,
         function()
