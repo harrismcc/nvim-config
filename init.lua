@@ -67,8 +67,9 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 -- Set spacing for tabs
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -99,6 +100,23 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Add a keymap to yank the current file path to the clipboard
+vim.keymap.set('n', '<leader>by', function()
+  local filepath = vim.fn.expand '%'
+  local project_root = vim.fn.system 'git rev-parse --show-toplevel'
+  project_root = string.gsub(project_root, '\n', '') -- Remove trailing newline
+
+  -- Check if the command was successful and project_root is not empty
+  if project_root and project_root ~= '' then
+    local relative_path = string.gsub(filepath, project_root .. '/', '')
+    vim.fn.setreg('+', relative_path)
+    vim.notify('Copied relative file path to clipboard: ' .. relative_path)
+  else
+    vim.notify('Not in a git repository.  Yanked absolute path', vim.log.levels.WARN)
+    vim.fn.setreg('+', filepath)
+  end
+end, { desc = 'Yank current file [P]ath to clipboard' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -134,7 +152,6 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 require('lazy').setup({
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'

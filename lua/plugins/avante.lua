@@ -4,37 +4,73 @@ return {
   lazy = false,
   version = false, -- set this if you want to always pull the latest change
   opts = {
-    -- add any opts here
-    provider = 'copilot',
+    -- The default provider to use
+    provider = 'gemini-pro',
+
+    -- The provider to use when applying the cursor diff
+    cursor_applying_provider = 'llama-3.3-70b',
+    behaviour = {
+      auto_apply_diff_after_generation = true,
+      minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
+      enable_cursor_planning_mode = true, -- enable cursor planning mode!
+    },
 
     vendors = {
+      ['claude-3.7-sonnet'] = {
+        __inherited_from = 'openai',
+        endpoint = 'https://openrouter.ai/api/v1',
+        api_key_name = 'OPENROUTER_API_KEY',
+        model = 'anthropic/claude-3.7-sonnet',
+        max_tokens = 8192,
+      },
+      -- Used for the cursor planning mode
+      ['llama-3.3-70b'] = {
+        __inherited_from = 'openai',
+        endpoint = 'https://openrouter.ai/api/v1',
+        api_key_name = 'OPENROUTER_API_KEY',
+        model = 'meta-llama/llama-3.3-70b-instruct:nitro',
+        max_tokens = 8192,
+      },
       r1 = {
         __inherited_from = 'openai',
-        api_key_name = 'OPENWEBUI_API_KEY',
-        endpoint = 'https://chat.socksmy.rocks/api',
-        model = 'deepseek-r1',
-      },
-      ['o1'] = {
-        __inherited_from = 'openai',
-        api_key_name = 'OPENWEBUI_API_KEY',
-        endpoint = 'https://chat.socksmy.rocks/api',
-        model = 'litellm.o1',
+        endpoint = 'https://openrouter.ai/api/v1',
+        api_key_name = 'OPENROUTER_API_KEY',
+        model = 'deepseek/deepseek-r1:nitro',
+        disable_tools = true,
+        max_tokens = 8192,
       },
       ['o1-mini'] = {
         __inherited_from = 'openai',
-        api_key_name = 'OPENWEBUI_API_KEY',
-        endpoint = 'https://chat.socksmy.rocks/api',
-        model = 'litellm.o1-mini',
+        endpoint = 'https://openrouter.ai/api/v1',
+        api_key_name = 'OPENROUTER_API_KEY',
+        model = 'openai/o1-mini',
+        max_tokens = 8192,
       },
-      ['4o-mini'] = {
+      ['gemini-flash-2.0-thinking'] = {
         __inherited_from = 'openai',
-        api_key_name = 'OPENWEBUI_API_KEY',
-        endpoint = 'https://chat.socksmy.rocks/api',
-        model = 'litellm.gpt-4o-mini',
+        endpoint = 'https://openrouter.ai/api/v1',
+        api_key_name = 'OPENROUTER_API_KEY',
+        model = 'google/gemini-2.0-flash-thinking-exp:free',
+        disable_tools = true,
+        max_tokens = 8192,
+      },
+      ['gemini-pro'] = {
+        __inherited_from = 'openai',
+        endpoint = 'https://openrouter.ai/api/v1',
+        api_key_name = 'OPENROUTER_API_KEY',
+        model = 'google/gemini-2.0-pro-exp-02-05:free',
+        max_tokens = 8192,
       },
     },
 
+    web_search_engine = {
+      provider = 'tavily', -- tavily, serpapi or google
+    },
+
     mappings = {
+      diff = {
+        all_theirs = 'cT',
+      },
       ask = '<leader>cc', -- ask
       edit = '<leader>ce', -- edit
       refresh = '<leader>ur', -- refresh
@@ -122,7 +158,10 @@ return {
     'nvim-lua/plenary.nvim',
     'MunifTanjim/nui.nvim',
     --- The below dependencies are optional,
+    'echasnovski/mini.pick', -- for file_selector provider mini.pick
+    'nvim-telescope/telescope.nvim', -- for file_selector provider telescope
     'hrsh7th/nvim-cmp', -- autocompletion for avante commands and mentions
+    'ibhagwan/fzf-lua', -- for file_selector provider fzf
     'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
     'zbirenbaum/copilot.lua', -- for providers='copilot'
     {
