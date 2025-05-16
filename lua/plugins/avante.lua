@@ -39,27 +39,19 @@ return {
         disable_tools = true,
         max_tokens = 8192,
       },
-      ['o1-mini'] = {
+      ['o3-mini-high'] = {
         __inherited_from = 'openai',
         endpoint = 'https://openrouter.ai/api/v1',
         api_key_name = 'OPENROUTER_API_KEY',
-        model = 'openai/o1-mini',
-        max_tokens = 8192,
-      },
-      ['gemini-flash-2.0-thinking'] = {
-        __inherited_from = 'openai',
-        endpoint = 'https://openrouter.ai/api/v1',
-        api_key_name = 'OPENROUTER_API_KEY',
-        model = 'google/gemini-2.0-flash-thinking-exp:free',
-        disable_tools = true,
+        model = 'openai/o3-mini-high',
         max_tokens = 8192,
       },
       ['gemini-pro'] = {
         __inherited_from = 'openai',
         endpoint = 'https://openrouter.ai/api/v1',
         api_key_name = 'OPENROUTER_API_KEY',
-        model = 'google/gemini-2.0-pro-exp-02-05:free',
-        max_tokens = 8192,
+        model = 'google/gemini-2.5-pro-preview-03-25',
+        max_tokens = 800000,
       },
     },
 
