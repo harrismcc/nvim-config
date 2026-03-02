@@ -5,9 +5,47 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local lint = require 'lint'
+
+      -- Helper to check if a config file exists in project
+      local function has_config(patterns)
+        return vim.fs.find(patterns, { upward = true, type = 'file' })[1] ~= nil
+      end
+
+      local function has_biome()
+        return has_config({ 'biome.json', 'biome.jsonc' })
+      end
+
+      local function has_eslint()
+        return has_config({
+          '.eslintrc',
+          '.eslintrc.js',
+          '.eslintrc.cjs',
+          '.eslintrc.json',
+          '.eslintrc.yaml',
+          '.eslintrc.yml',
+          'eslint.config.js',
+          'eslint.config.mjs',
+          'eslint.config.cjs',
+        })
+      end
+
+      -- Returns the appropriate JS/TS linter based on project config
+      local function get_js_linters()
+        if has_biome() then
+          return { 'biomejs' }
+        elseif has_eslint() then
+          return { 'eslint_d' }
+        end
+        return {}
+      end
+
       lint.linters_by_ft = {
         markdown = { 'markdownlint' },
         dockerfile = { 'hadolint' },
+        javascript = get_js_linters,
+        javascriptreact = get_js_linters,
+        typescript = get_js_linters,
+        typescriptreact = get_js_linters,
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,

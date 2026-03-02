@@ -103,13 +103,13 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Add a keymap to yank the current file path to the clipboard
 vim.keymap.set('n', '<leader>by', function()
-  local filepath = vim.fn.expand '%'
+  local filepath = vim.fn.expand '%:p' -- Get absolute path
   local project_root = vim.fn.system 'git rev-parse --show-toplevel'
   project_root = string.gsub(project_root, '\n', '') -- Remove trailing newline
 
   -- Check if the command was successful and project_root is not empty
   if project_root and project_root ~= '' then
-    local relative_path = string.gsub(filepath, project_root .. '/', '')
+    local relative_path = string.gsub(filepath, '^' .. vim.pesc(project_root) .. '/', '')
     vim.fn.setreg('+', relative_path)
     vim.notify('Copied relative file path to clipboard: ' .. relative_path)
   else

@@ -1,0 +1,301 @@
+{
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "/"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<C-h>"],
+      "commands": ["workbench.action.focusLeftGroup"]
+    },
+    {
+      "before": ["<C-l>"],
+      "commands": ["workbench.action.focusRightGroup"]
+    },
+    {
+      "before": ["<C-j>"],
+      "commands": ["workbench.action.focusBelowGroup"]
+    },
+    {
+      "before": ["<C-k>"],
+      "commands": ["workbench.action.focusAboveGroup"]
+    },
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["<leader>", "q"],
+      "commands": ["workbench.actions.view.problems"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<leader>", "s", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "s", "g"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "s", "b"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "s", "h"],
+      "commands": ["workbench.action.showCommands"]
+    },
+    {
+      "before": ["<leader>", "s", "k"],
+      "commands": ["workbench.action.openGlobalKeybindings"]
+    },
+    {
+      "before": ["<leader>", "s", "d"],
+      "commands": ["workbench.actions.view.problems"]
+    },
+    {
+      "before": ["<leader>", "s", "r"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "s", "."],
+      "commands": ["workbench.action.openRecent"]
+    },
+    {
+      "before": ["<leader>", "s", "n"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "<leader>"],
+      "commands": ["workbench.action.showAllEditors"]
+    },
+    {
+      "before": ["g", "d"],
+      "commands": ["editor.action.revealDefinition"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
+      "before": ["g", "I"],
+      "commands": ["editor.action.goToImplementation"]
+    },
+    {
+      "before": ["g", "D"],
+      "commands": ["editor.action.revealDeclaration"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["<leader>", "D"],
+      "commands": ["editor.action.goToTypeDefinition"]
+    },
+    {
+      "before": ["<leader>", "d", "s"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["<leader>", "w", "s"],
+      "commands": ["workbench.action.showAllSymbols"]
+    },
+    {
+      "before": ["<leader>", "r", "n"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["<leader>", "c", "a"],
+      "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["<leader>", "u", "h"],
+      "commands": ["editor.action.inlineSuggest.toggle"]
+    },
+    {
+      "before": ["<leader>", "A"],
+      "commands": ["workbench.action.addEditorToNextGroup"]
+    },
+    {
+      "before": ["<leader>", "a"],
+      "commands": ["workbench.action.showAllEditors"]
+    },
+    {
+      "before": ["<leader>", "1"],
+      "commands": ["workbench.action.openEditorAtIndex1"]
+    },
+    {
+      "before": ["<leader>", "2"],
+      "commands": ["workbench.action.openEditorAtIndex2"]
+    },
+    {
+      "before": ["<leader>", "3"],
+      "commands": ["workbench.action.openEditorAtIndex3"]
+    },
+    {
+      "before": ["<leader>", "4"],
+      "commands": ["workbench.action.openEditorAtIndex4"]
+    },
+    {
+      "before": ["<leader>", "5"],
+      "commands": ["workbench.action.openEditorAtIndex5"]
+    },
+    {
+      "before": ["]", "h"],
+      "commands": ["workbench.action.editor.nextChange"]
+    },
+    {
+      "before": ["[", "h"],
+      "commands": ["workbench.action.editor.previousChange"]
+    },
+    {
+      "before": ["<leader>", "g", "h", "s"],
+      "commands": ["git.stage"]
+    },
+    {
+      "before": ["<leader>", "g", "h", "r"],
+      "commands": ["git.revertSelectedRanges"]
+    },
+    {
+      "before": ["<leader>", "g", "h", "S"],
+      "commands": ["git.stageAll"]
+    },
+    {
+      "before": ["<leader>", "g", "h", "u"],
+      "commands": ["git.unstage"]
+    },
+    {
+      "before": ["<leader>", "g", "h", "R"],
+      "commands": ["git.revertAll"]
+    },
+    {
+      "before": ["<leader>", "g", "h", "p"],
+      "commands": ["workbench.action.editor.nextChange"]
+    },
+    {
+      "before": ["<leader>", "g", "h", "b"],
+      "commands": ["git.toggleBlame"]
+    },
+    {
+      "before": ["<leader>", "g", "h", "d"],
+      "commands": ["git.openChange"]
+    },
+    {
+      "before": ["<leader>", "g", "h", "D"],
+      "commands": ["git.openChange"]
+    },
+    {
+      "before": ["<leader>", "d", "b"],
+      "commands": ["editor.debug.action.toggleBreakpoint"]
+    },
+    {
+      "before": ["<leader>", "d", "c"],
+      "commands": ["workbench.action.debug.start"]
+    },
+    {
+      "before": ["<leader>", "d", "i"],
+      "commands": ["workbench.action.debug.stepInto"]
+    },
+    {
+      "before": ["<leader>", "d", "o"],
+      "commands": ["workbench.action.debug.stepOver"]
+    },
+    {
+      "before": ["<leader>", "d", "O"],
+      "commands": ["workbench.action.debug.stepOut"]
+    },
+    {
+      "before": ["<leader>", "d", "r"],
+      "commands": ["workbench.debug.action.toggleRepl"]
+    },
+    {
+      "before": ["<leader>", "d", "l"],
+      "commands": ["workbench.action.debug.restart"]
+    },
+    {
+      "before": ["<leader>", "d", "u"],
+      "commands": ["workbench.debug.action.toggleRepl"]
+    },
+    {
+      "before": ["<leader>", "d", "k"],
+      "commands": ["workbench.action.debug.stop"]
+    },
+    {
+      "before": ["<leader>", "q", "s"],
+      "commands": ["workbench.action.files.saveWorkspaceAs"]
+    },
+    {
+      "before": ["<leader>", "q", "l"],
+      "commands": ["workbench.action.files.openWorkspace"]
+    },
+    {
+      "before": ["<leader>", "q", "d"],
+      "commands": ["workbench.action.files.closeWorkspace"]
+    },
+    {
+      "before": ["<leader>", "b", "y"],
+      "commands": ["copyFilePath"]
+    },
+    {
+      "before": ["<leader>", "c", "c"],
+      "commands": ["workbench.action.chat.open"]
+    },
+    {
+      "before": ["<leader>", "c", "e"],
+      "commands": ["workbench.action.chat.open"]
+    },
+    {
+      "before": ["<leader>", "c", "p"],
+      "commands": ["workbench.action.chat.open"]
+    },
+    {
+      "before": ["<leader>", "u", "r"],
+      "commands": ["workbench.action.chat.refresh"]
+    }
+  ],
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-n>"],
+      "commands": ["selectNextSuggestion"]
+    },
+    {
+      "before": ["<C-p>"],
+      "commands": ["selectPrevSuggestion"]
+    },
+    {
+      "before": ["<Tab>"],
+      "commands": ["acceptSelectedSuggestion"]
+    },
+    {
+      "before": ["<C-Space>"],
+      "commands": ["editor.action.triggerSuggest"]
+    },
+    {
+      "before": ["<C-l>"],
+      "commands": ["editor.action.inlineSuggest.acceptNextWord"]
+    },
+    {
+      "before": ["<C-h>"],
+      "commands": ["editor.action.inlineSuggest.acceptPrevWord"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "g", "h", "s"],
+      "commands": ["git.stageSelectedRanges"]
+    },
+    {
+      "before": ["<leader>", "g", "h", "r"],
+      "commands": ["git.revertSelectedRanges"]
+    }
+  ]
+}
