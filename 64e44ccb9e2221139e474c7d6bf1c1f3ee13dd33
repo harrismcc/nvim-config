@@ -1,0 +1,25 @@
+lua/plugins/conform.lua
+  93b5f57a5ad4bea8 25-28
+lua/plugins/lint.lua
+  93b5f57a5ad4bea8 8-41,45-48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.7",
+  "base_commit_sha": "64e44ccb9e2221139e474c7d6bf1c1f3ee13dd33",
+  "prompts": {
+    "93b5f57a5ad4bea8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "eb5041b6-4baa-4ee9-9685-2c2170ed3d0d",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "harrismcc <git@harrismccullers.com>",
+      "messages": [],
+      "total_additions": 42,
+      "total_deletions": 4,
+      "accepted_lines": 42,
+      "overriden_lines": 0
+    }
+  }
+}
