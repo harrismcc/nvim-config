@@ -70,7 +70,10 @@ return {
       })
 
       -- Configure mason-nvim-lint
-      require('mason-nvim-lint').setup()
+      require('mason-nvim-lint').setup {
+        ensure_installed = { 'markdownlint', 'hadolint' },
+        automatic_installation = true,
+      }
     end,
   },
 }

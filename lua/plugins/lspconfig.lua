@@ -110,12 +110,15 @@ return {
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.server_capabilities.documentHighlightProvider then
+          local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight-' .. event.buf, { clear = true })
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            group = highlight_augroup,
             buffer = event.buf,
             callback = vim.lsp.buf.document_highlight,
           })
 
           vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+            group = highlight_augroup,
             buffer = event.buf,
             callback = vim.lsp.buf.clear_references,
           })
@@ -155,6 +158,7 @@ return {
         filetypes = { 'c', 'cpp', 'objc', 'ojbcpp', 'cuda' },
       },
       astro = {},
+      nil_ls = {},
       -- gopls = {},
       -- pyright = {},
       -- rust_analyzer = {},

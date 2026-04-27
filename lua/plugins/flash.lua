@@ -6,7 +6,7 @@ return {
   -- stylua: ignore
   keys = {
     -- TODO: I want to remap this to f but I can't and it's upsetting to me
-    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, {noremap= true, desc = "Flash"}},
+    { "s", function() require("flash").jump() end, mode = { "n", "x", "o" }, desc = "Flash" },
     { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
     { "r", mode = "o", function() require("flash").remote() end, desc = "remote flash" },
     { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
