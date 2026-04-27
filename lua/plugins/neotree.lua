@@ -54,10 +54,7 @@ return {
   },
   config = function(_, opts)
     local function on_move(data)
-      local ok, snacks = pcall(require, 'snacks')
-      if ok and snacks.rename and snacks.rename.on_rename_file then
-        snacks.rename.on_rename_file(data.source, data.destination)
-      end
+      Util.lsp.on_rename(data.source, data.destination)
     end
 
     local events = require 'neo-tree.events'
@@ -68,7 +65,6 @@ return {
     })
     require('neo-tree').setup(opts)
     vim.api.nvim_create_autocmd('TermClose', {
-      group = vim.api.nvim_create_augroup('neo-tree-refresh-git-status', { clear = true }),
       pattern = '*lazygit',
       callback = function()
         if package.loaded['neo-tree.sources.git_status'] then

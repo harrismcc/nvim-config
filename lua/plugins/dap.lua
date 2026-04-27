@@ -79,6 +79,9 @@ return {
     },
   },
   config = function()
+    -- Ensure mason-nvim-dap is setup BEFORE defining configurations
+    require('mason-nvim-dap').setup() -- Use opts defined in the plugin spec above
+
     local dap = require 'dap'
 
     -- Keymaps
@@ -92,10 +95,22 @@ return {
     vim.keymap.set('n', '<leader>du', '<cmd>lua require("dapui").toggle()<CR>', { desc = 'Toggle [U]I' })
     vim.keymap.set('n', '<leader>dk', dap.terminate, { desc = 'Terminate ([K]ill)' })
 
-    local ok, which_key = pcall(require, 'which-key')
-    if ok then
-      which_key.add { { '<leader>d', group = '[D]ebug' } }
-    end
+    -- Register with which-key
+    -- The '<leader>d' group should already be registered in init.lua
+    require('which-key').register {
+      ['<leader>d'] = {
+        name = '[D]ebug',
+        b = { dap.toggle_breakpoint, '[B]reakpoint' },
+        c = { dap.continue, '[C]ontinue' },
+        i = { dap.step_into, 'Step [I]nto' },
+        o = { dap.step_over, 'Step [O]ver' },
+        O = { dap.step_out, 'Step O[u]t' },
+        r = { dap.repl.toggle, '[R]EPL' },
+        l = { dap.run_last, 'Run [L]ast' },
+        u = { '<cmd>lua require("dapui").toggle()<CR>', 'Toggle [U]I' },
+        k = { dap.terminate, 'Terminate ([K]ill)' },
+      },
+    }
 
     -- Configure js-debug-adapter
     -- Assumes mason-nvim-dap correctly sets up the 'pwa-node' adapter type
@@ -132,6 +147,6 @@ return {
     dap.configurations.javascriptreact = { node_dap_configs, bun_dap_configs }
     dap.configurations.typescriptreact = { node_dap_configs, bun_dap_configs }
 
-    vim.notify('nvim-dap configured with Node and Bun support', vim.log.levels.INFO)
+    print 'nvim-dap configured with Node and Bun support!'
   end,
 }

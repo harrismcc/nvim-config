@@ -3,18 +3,19 @@ local util = require 'lspconfig.util'
 return {
   'pmizio/typescript-tools.nvim',
   dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-  config = function(_, opts)
-    require('typescript-tools').setup(opts)
+  config = function()
+    require('typescript-tools').setup {
+      on_attach = function(client, bufnr)
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+
+        if vim.lsp.inlay_hint then
+          vim.lsp.inlay_hint.enable(true, { bufnr })
+        end
+      end,
+    }
   end,
   opts = {
-    on_attach = function(client, bufnr)
-      client.server_capabilities.documentFormattingProvider = false
-      client.server_capabilities.documentRangeFormattingProvider = false
-
-      if vim.lsp.inlay_hint then
-        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-      end
-    end,
     settings = {
       code_lens = 'off',
       complete_function_calls = true,
