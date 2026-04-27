@@ -1,0 +1,23 @@
+lua/plugins/lint.lua
+  8da6a072db9ba85c 42-43,58-66
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "825bed68ca58f7ab25adf2be597b07f5996997ce",
+  "prompts": {
+    "8da6a072db9ba85c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c159a365-9284-4fc6-8cfa-9bf271bbd87a",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "harrismcc",
+      "messages": [],
+      "total_additions": 11,
+      "total_deletions": 37,
+      "accepted_lines": 11,
+      "overriden_lines": 0
+    }
+  }
+}
